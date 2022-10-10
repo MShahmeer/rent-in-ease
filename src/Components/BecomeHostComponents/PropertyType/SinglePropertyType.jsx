@@ -7,7 +7,7 @@ const SinglePropertyType = () => {
   return (
     <Box
       sx={{
-        width: 462,
+        width: 442,
         height: 87,
         backgroundColor: "#fffff",
         border: "2px solid",
@@ -19,16 +19,16 @@ const SinglePropertyType = () => {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingRight: "10px",
-        paddingLeft: "10px",
+        paddingRight: "20px",
+        paddingLeft: "20px",
       }}
     >
       <Typography>Property Type</Typography>
 
       <Avatar
         sx={{
-          width: 70,
-          height: 70,
+          width: 60,
+          height: 60,
           borderRadius: "5px",
         }}
         variant="square"
