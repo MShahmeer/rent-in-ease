@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
-const SinglePropertyType = () => {
+const SinglePropertyType = ({ PropertyType, url }) => {
   return (
     <Box
       sx={{
@@ -23,7 +23,7 @@ const SinglePropertyType = () => {
         paddingLeft: "20px",
       }}
     >
-      <Typography>Property Type</Typography>
+      <Typography>{PropertyType}</Typography>
 
       <Avatar
         sx={{
@@ -33,7 +33,7 @@ const SinglePropertyType = () => {
         }}
         variant="square"
         alt="Remy Sharp"
-        src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"
+        src={url}
       />
     </Box>
   );
