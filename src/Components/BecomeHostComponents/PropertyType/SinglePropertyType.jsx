@@ -4,6 +4,10 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
 const SinglePropertyType = ({ PropertyType, url }) => {
+  if (typeof url === "string") {
+    console.log("string");
+  }
+
   return (
     <Box
       sx={{
@@ -24,17 +28,20 @@ const SinglePropertyType = ({ PropertyType, url }) => {
       }}
     >
       <Typography>{PropertyType}</Typography>
-
-      <Avatar
-        sx={{
-          width: 60,
-          height: 60,
-          borderRadius: "5px",
-        }}
-        variant="square"
-        alt="Remy Sharp"
-        src={url}
-      />
+      {typeof url === "string" ? (
+        <Avatar
+          sx={{
+            width: 60,
+            height: 60,
+            borderRadius: "5px",
+          }}
+          variant="square"
+          alt="Remy Sharp"
+          src={url}
+        />
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };

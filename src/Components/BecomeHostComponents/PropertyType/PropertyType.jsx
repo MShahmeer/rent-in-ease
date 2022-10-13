@@ -44,6 +44,8 @@ const PropertyType = () => {
         url={"https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"}
       />
 
+      <SinglePropertyType PropertyType={"home"} />
+
       <Stack direction="row" spacing={"auto"} sx={{ p: "20px" }}>
         <Button variant="contained" startIcon={<NavigateBeforeIcon />}>
           Back

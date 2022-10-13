@@ -4,6 +4,10 @@ import ImageGallery from "./Components/SinglePostComponents/ImageGallery/ImageGa
 import SinglePropertyType from "./Components/BecomeHostComponents/PropertyType/SinglePropertyType";
 import Amenities from "./Components/SinglePostComponents/Amenities/Amenities";
 import PropertyType from "./Components/BecomeHostComponents/PropertyType/PropertyType";
+import SinglePost from "./Pages/SinglePost/SinglePost.jsx";
+import LeftSideBar from "./Components/AdminPageComponents/LeftSideBar";
+import UserList from "./Components/AdminPageComponents/UserList";
+
 function App() {
   return (
     <>
@@ -11,7 +15,12 @@ function App() {
       <ImageGallery />;
       <Amenities /> */}
 
-      <PropertyType className="propertyType" />
+      {/* <PropertyType className="propertyType" /> */}
+
+      {/* <SinglePost /> */}
+      {/* <LeftSideBar /> */}
+
+      <UserList type="Hosts" />
     </>
   );
 }
