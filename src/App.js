@@ -7,6 +7,7 @@ import PropertyType from "./Components/BecomeHostComponents/PropertyType/Propert
 import SinglePost from "./Pages/SinglePost/SinglePost.jsx";
 import LeftSideBar from "./Components/AdminPageComponents/LeftSideBar";
 import UserList from "./Components/AdminPageComponents/UserList";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       {/* <SinglePost /> */}
       {/* <LeftSideBar /> */}
 
-      <UserList type="Hosts" />
+      {/* <UserList type="Hosts" /> */}
+      <Dashboard />
     </>
   );
 }
