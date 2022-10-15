@@ -22,29 +22,29 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
-function createData(name, propertyType, cnic, reviews) {
+function createData(propertyName, ownerName, location, status) {
   return {
-    name,
-    propertyType,
-    cnic,
-    reviews,
+    propertyName,
+    ownerName,
+    location,
+    status,
   };
 }
 
 const rows = [
-  createData("Shahmeer", "House", "38302-0455809-9", 4),
-  createData("Shahmeer", "House", "38302-0455803-9", 4),
-  createData("Shahmeer", "House", "38302-0455809-8", 4),
-  createData("Shahmeer", "House", "38302-0455809-7", 4),
-  createData("Shahmeer", "House", "38302-0455809-6", 4),
-  createData("Shahmeer", "House", "38302-0455809-5", 4),
-  createData("Shahmeer", "House", "38302-0455809-4", 4),
-  createData("Shahmeer", "House", "38302-0455809-3", 4),
-  createData("Shahmeer", "House", "38302-0455809-2", 4),
-  createData("Shahmeer", "House", "38302-0455809-1", 4),
-  createData("Shahmeer", "House", "38302-0455809-0", 4),
-  createData("Shahmeer", "House", "38302-0455801-9", 4),
-  createData("Shahmeer", "House", "38302-0455802-9", 4),
+  createData("House", "Shahmeer", "Lahore", "Booked"),
+  createData("House", "Shahmeer", "Lahorea", "Booked"),
+  createData("House", "Shahmeer", "Lahoreb", "Booked"),
+  createData("House", "Shahmeer", "Lahorec", "Booked"),
+  createData("House", "Shahmeer", "Lahored", "Booked"),
+  createData("House", "Shahmeer", "Lahoree", "Booked"),
+  createData("House", "Shahmeer", "Lahoref", "Booked"),
+  createData("House", "Shahmeer", "Lahoreg", "Booked"),
+  createData("House", "Shahmeer", "Lahoreh", "Booked"),
+  createData("House", "Shahmeer", "Lahorei", "Booked"),
+  createData("House", "Shahmeer", "Lahorej", "Booked"),
+  createData("House", "Shahmeer", "Lahorek", "Booked"),
+  createData("House", "Shahmeer", "Lahorel", "Booked"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -79,28 +79,28 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: "name",
+    id: "propertyName",
     numeric: false,
     disablePadding: true,
-    label: "Name",
+    label: "Property Name",
   },
   {
-    id: "propertyType",
+    id: "ownerName",
     numeric: false,
     disablePadding: true,
-    label: "Property",
+    label: "Owner Name",
   },
   {
-    id: "cnic",
+    id: "location",
     numeric: false,
     disablePadding: true,
-    label: "CNIC",
+    label: "Location",
   },
   {
-    id: "reviews",
-    numeric: true,
+    id: "status",
+    numeric: false,
     disablePadding: true,
-    label: "Reviews",
+    label: "Status",
   },
 ];
 
@@ -134,7 +134,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            //align={headCell.numeric ? "right" : "left"}
+            align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -199,7 +199,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          User Details
+          Property Details
         </Typography>
       )}
 
@@ -224,7 +224,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function Users() {
+export default function PropertyDetails() {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("status");
   const [selected, setSelected] = React.useState([]);
@@ -310,7 +310,7 @@ export default function Users() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.propertyName);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -320,7 +320,7 @@ export default function Users() {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.cnic}
+                      key={row.location}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -338,11 +338,11 @@ export default function Users() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.propertyName}
                       </TableCell>
-                      <TableCell>{row.propertyType}</TableCell>
-                      <TableCell>{row.cnic}</TableCell>
-                      <TableCell>{row.reviews}</TableCell>
+                      <TableCell>{row.ownerName}</TableCell>
+                      <TableCell>{row.location}</TableCell>
+                      <TableCell>{row.status}</TableCell>
                     </TableRow>
                   );
                 })}

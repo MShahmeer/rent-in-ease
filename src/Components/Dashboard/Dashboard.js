@@ -19,9 +19,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
+// import Deposits from "./Deposits";
+import PropertyDetails from "./PropertyDetails";
 import Users from "./Users";
+import PendingApprovals from "./PendingApprovals";
 
 function Copyright(props) {
   return (
@@ -99,7 +100,7 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} color="inherit">
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -179,10 +180,9 @@ function DashboardContent() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
-                  <Chart />
+                  <Users />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -192,16 +192,17 @@ function DashboardContent() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
-                  <Deposits />
+                  {/* <Deposits /> */}
+                  <PendingApprovals />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Users />
+                  {/* <Users /> */}
+                  <PropertyDetails />
                 </Paper>
               </Grid>
             </Grid>
