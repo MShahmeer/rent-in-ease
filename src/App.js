@@ -4,10 +4,11 @@ import ImageGallery from "./Components/SinglePostComponents/ImageGallery/ImageGa
 import SinglePropertyType from "./Components/BecomeHostComponents/PropertyType/SinglePropertyType";
 import Amenities from "./Components/SinglePostComponents/Amenities/Amenities";
 import PropertyType from "./Components/BecomeHostComponents/PropertyType/PropertyType";
-import SinglePost from "./Pages/SinglePost/SinglePost.jsx";
+//import SinglePost from "./Pages/SinglePost/SinglePost.jsx";
 import LeftSideBar from "./Components/AdminPageComponents/LeftSideBar";
 import UserList from "./Components/AdminPageComponents/UserList";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import Home from "./Pages/HomePage/Home";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       {/* <LeftSideBar /> */}
 
       {/* <UserList type="Hosts" /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <Home />
     </>
   );
 }
