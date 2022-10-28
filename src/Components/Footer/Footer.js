@@ -13,7 +13,7 @@ import {
   flexBetweenCenter,
   justifyCenter,
   fullWidthFlex,
-} from "../../../Theme/CommonStyles";
+} from "../../Theme/CommonStyles";
 
 const footerLinks = [
   { id: 1, text: "Privacy", url: "#" },

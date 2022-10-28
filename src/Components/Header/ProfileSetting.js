@@ -7,16 +7,16 @@ import Stack from "@mui/material/Stack";
 import { BsGlobe } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegUserCircle } from "react-icons/fa";
-import { flexCenter } from "../../../Theme/CommonStyles";
+import { flexCenter } from "../../Theme/CommonStyles";
 
 const ProfileSettings = () => {
   return (
     <Box sx={flexCenter}>
-      <Link href="#"> Become A Host</Link>
+      <Link href="#"> Become Host</Link>
       <Stack>
-        <Button>
+        {/* <Button>
           <BsGlobe size={24} />
-        </Button>
+        </Button> */}
         <Button
           sx={{
             borderRadius: 10,
@@ -24,8 +24,8 @@ const ProfileSettings = () => {
           }}
         >
           <Stack>
-            <AiOutlineMenu size={24} />
-            <FaRegUserCircle size={24} />
+            <AiOutlineMenu size={18} />
+            <FaRegUserCircle size={18} />
           </Stack>
         </Button>
       </Stack>

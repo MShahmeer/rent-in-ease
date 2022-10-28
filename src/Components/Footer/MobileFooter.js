@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 
 import { BsGlobe } from "react-icons/bs";
 
-import { justifyCenter } from "../../../Theme/CommonStyles";
+import { justifyCenter } from "../../Theme/CommonStyles";
 
 const footerLinks = [
   { id: 1, text: "Privacy", url: "#" },

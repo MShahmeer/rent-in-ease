@@ -9,6 +9,7 @@ import LeftSideBar from "./Components/AdminPageComponents/LeftSideBar";
 import UserList from "./Components/AdminPageComponents/UserList";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Home from "./Pages/HomePage/Home";
+import ArchivePage from "./Pages/ArchivePage/ArchivePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       {/* <UserList type="Hosts" /> */}
       {/* <Dashboard /> */}
       <Home />
+      {/* <ArchivePage /> */}
     </>
   );
 }

@@ -5,11 +5,12 @@ import ProfileSettings from "./ProfileSetting";
 import MobileSearch from "./MobileSearch";
 import Logo from "./Logo";
 import LocationSearch from "./LocationSearch";
+import SearchBar from "./SearchBar";
 import {
   flexBetweenCenter,
   dFlex,
   displayOnDesktop,
-} from "../../../Theme/CommonStyles";
+} from "../../Theme/CommonStyles";
 
 const Header = () => {
   return (
@@ -32,7 +33,7 @@ const Header = () => {
             <Logo />
           </Box>
           <Box sx={displayOnDesktop}>
-            <LocationSearch />
+            <SearchBar />
           </Box>
           <Box sx={displayOnDesktop}>
             <ProfileSettings />
