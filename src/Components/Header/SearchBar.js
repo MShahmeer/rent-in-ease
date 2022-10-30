@@ -13,7 +13,7 @@ import {
 import { searchFilterContext } from "../../Context";
 import PersonIcon from "@mui/icons-material/Person";
 
-const SearchBar = () => {
+const SearchBar = ({ onLoad, onPlaceChanged }) => {
   let isMedium = useMediaQuery("(max-width:900px)");
   let isMobile = useMediaQuery("(max-width:750px)");
 
@@ -121,20 +121,20 @@ const SearchBar = () => {
         >
           <Box sx={styles.inputs}>
             Location
-            {/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}> */}
-            <TextField
-              variant="standard"
-              autoFocus
-              sx={{
-                "&::placeholder": {
-                  color: "gray",
-                },
-              }}
-              placeholder="Where are you going?"
-              fullWidth
-              InputProps={{ disableUnderline: true }}
-            />
-            {/* </Autocomplete> */}
+            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+              <TextField
+                variant="standard"
+                autoFocus
+                sx={{
+                  "&::placeholder": {
+                    color: "gray",
+                  },
+                }}
+                placeholder="Where are you going?"
+                fullWidth
+                InputProps={{ disableUnderline: true }}
+              />
+            </Autocomplete>
           </Box>
         </Box>
         <Box sx={isMobile ? styles.hl : styles.vl} />
