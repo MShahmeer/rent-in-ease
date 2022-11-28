@@ -7,6 +7,7 @@ import { grey } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
 import DestinationDetails from "../DestinationDetails/DestinationDetails";
 import ReactLoading from "react-loading";
 const drawerBleeding = 56;
@@ -134,7 +135,7 @@ function SwipeableEdgeDrawer(props) {
               {props.places?.map((place, i) => (
                 <Box key={i} ref={elRefs[i]}>
                   {i !== 0 && <hr style={styles.line2} />}
-                  <DestinationDetails
+                  <PlaceDetails
                     isMobile={props.isMobile}
                     place={place}
                     selected={Number(props.childClicked) === i}

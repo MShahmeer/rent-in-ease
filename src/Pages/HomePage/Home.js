@@ -16,7 +16,7 @@ import { displayOnDesktop } from "../../Theme/CommonStyles";
 import React from "react";
 import MobileFooter from "../../Components/Footer/MobileFooter";
 
-function Home() {
+function Home({ onLoad, onPlaceChanged, destination }) {
   return (
     //<Card />
     // <Box>
@@ -32,8 +32,12 @@ function Home() {
         }}
       >
         <Box>
-          <Header />
-          <City />
+          <Header
+            onLoad={onLoad}
+            onPlaceChanged={onPlaceChanged}
+            destination={destination}
+          />
+          {/* <City /> */}
         </Box>
         <Box
           sx={{
@@ -45,7 +49,10 @@ function Home() {
           }}
         >
           <Container maxWidth="xl" sx={{ mb: 3 }}>
-            <LocationCards />
+            <Box sx={{ m: 2 }}>
+              <LocationCards />
+            </Box>
+
             <Box
               sx={{
                 display: { xs: "flex", md: "none" },

@@ -1,11 +1,12 @@
 import React, { createRef, useContext, useEffect, useState } from "react";
-//import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/airbnbRed.png";
 import mobileLogo from "../../images/mobileLogoRed.png";
 import ReactLoading from "react-loading";
 //import { ConnectButton } from "web3uikit";
 import Map from "../../Components/ArchivePageComponents/Map/Map";
 import DestinationDetails from "../../Components/ArchivePageComponents/DestinationDetails/DestinationDetails";
+import PlaceDetails from "../../Components/ArchivePageComponents/PlaceDetails/PlaceDetails";
 import { searchFilterContext } from "../../Context";
 import {
   Box,
@@ -54,14 +55,10 @@ const ArchivePage = ({
     setGuests,
   } = useContext(searchFilterContext);
   useEffect(() => {
-    // setDestination(JSON.parse(localStorage.getItem(destination)));
-    // setCheckIn(localStorage.getItem(checkIn));
-    // setCheckOut(localStorage.getItem(checkOut));
-    // setGuests(localStorage.getItem(guests));
-    setDestination("Islamabad");
-    setCheckIn(10 / 29 / 2022);
-    setCheckOut(10 / 31 / 2022);
-    setGuests(2);
+    setDestination(JSON.parse(localStorage.getItem("destination")));
+    setCheckIn(localStorage.getItem("checkIn"));
+    setCheckOut(localStorage.getItem("checkOut"));
+    setGuests(localStorage.getItem("guests"));
 
     return () => {};
   }, []);
@@ -78,14 +75,14 @@ const ArchivePage = ({
     );
   }
 
-  //   useEffect(() => {
-  //     const lat = JSON.parse(localStorage.getItem("lat"));
-  //     const lng = JSON.parse(localStorage.getItem("lng"));
-  //     setCoordinates({ lat, lng });
-  //   }, []);
+  useEffect(() => {
+    const lat = JSON.parse(localStorage.getItem("lat"));
+    const lng = JSON.parse(localStorage.getItem("lng"));
+    setCoordinates({ lat, lng });
+  }, []);
 
-  // const { account } = useMoralis();
-  //const navigate = useNavigate();
+  //const { account } = useMoralis();
+  const navigate = useNavigate();
   useEffect(() => {
     setElRefs((refs) =>
       Array(places?.length)
@@ -186,45 +183,45 @@ const ArchivePage = ({
         }}
       >
         <Box>
-          {/* <Link to="/"> */}
-          <img
-            style={styles.logo}
-            src={isMedium ? mobileLogo : logo}
-            alt="logo"
-          />
-          {/* </Link> */}
+          <Link to="/">
+            <img
+              style={styles.logo}
+              src={isMedium ? mobileLogo : logo}
+              alt="logo"
+            />
+          </Link>
         </Box>
         <Box sx={styles.searchReminder}>
           <Typography varient="body1" sx={styles.filter}>
-            {"destination".split(",")[0]}
+            {destination.split(",")[0]}
           </Typography>
           <Box sx={styles.vl} />
           <Typography varient="body1" sx={styles.filter}>
             {`
-           ${months[parseInt("checkIn".split("-")[1], 10) - 1]} 
-           ${"checkIn".split("-")[2]} 
+           ${months[parseInt(checkIn.split("-")[1], 10) - 1]} 
+           ${checkIn.split("-")[2]} 
            - 
-             ${months[parseInt("checkOut".split("-")[1], 10) - 1]} 
-           ${"checkOut".split("-")[2]} 
+             ${months[parseInt(checkOut.split("-")[1], 10) - 1]} 
+           ${checkOut.split("-")[2]} 
         
           `}
           </Typography>
           <Box sx={styles.vl} />
           <Typography varient="body1" sx={styles.filter}>
-            {"guests"} Guest
+            {guests} Guest
           </Typography>
         </Box>
-        <Box display="flex">
-          {/* <ConnectButton />
-          {account && (
+        {/* <Box display="flex">
+          <ConnectButton />
+          {"account" && (
             <IconButton
               sx={{ color: "#EB4E5F" }}
               onClick={() => navigate("/trip")}
             >
               <PersonIcon />
             </IconButton>
-          )} */}
-        </Box>
+          )}
+        </Box> */}
       </Box>
 
       {/* <hr style={styles.line} /> */}
@@ -265,7 +262,7 @@ const ArchivePage = ({
                   {/* <hr style={styles.line2} /> */}
                   <Divider sx={{ margin: "30px 0px" }} />
                   <Box>
-                    <DestinationDetails
+                    <PlaceDetails
                       place={place}
                       selected={Number(childClicked) === i}
                       refProp={elRefs[i]}
@@ -281,7 +278,7 @@ const ArchivePage = ({
             places={places}
             coordinates={coordinates}
             setCoordinates={setCoordinates}
-            destination={"destination"}
+            destination={destination}
             setBound={setBound}
             setChildClicked={setChildClicked}
           />

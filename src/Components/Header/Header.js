@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ProfileSettings from "./ProfileSetting";
 import MobileSearch from "./MobileSearch";
+import { getData } from "../../api";
 import Logo from "./Logo";
 import LocationSearch from "./LocationSearch";
 import SearchBar from "./SearchBar";
@@ -13,35 +14,7 @@ import {
   displayOnDesktop,
 } from "../../Theme/CommonStyles";
 
-const Header = () => {
-  const [bound, setBound] = useState({});
-  const [places, setPlaces] = useState([]);
-
-  const [coordinates, setCoordinates] = useState({});
-  const [autocomplete, setAutocomplete] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [childClicked, setChildClicked] = useState(null);
-
-  const { destination, setDestination } = useContext(searchFilterContext);
-
-  const onLoad = (autoC) => setAutocomplete(autoC);
-
-  const onPlaceChanged = () => {
-    setDestination(autocomplete.getPlace().formatted_address);
-    const lat = autocomplete.getPlace().geometry.location.lat();
-    const lng = autocomplete.getPlace().geometry.location.lng();
-    setCoordinates({ lat, lng });
-  };
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   getData(bound, "hotels").then((data) => {
-  //     setPlaces(data?.filter((place) => place.name));
-  //     setIsLoading(false);
-  //   });
-  //   console.log(places);
-  // }, [bound]);
-
+const Header = ({ onLoad, onPlaceChanged, destination }) => {
   return (
     <Box
       sx={{

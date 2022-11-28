@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { Autocomplete } from "@react-google-maps/api";
 import {
@@ -44,7 +44,7 @@ const SearchBar = ({ onLoad, onPlaceChanged }) => {
   localStorage.setItem("checkOut", checkOut);
   localStorage.setItem("guests", guests);
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const styles = {
     searchFields: {
@@ -205,23 +205,23 @@ const SearchBar = ({ onLoad, onPlaceChanged }) => {
               cursor: "pointer",
             }),
           }}
-          //   onClick={() => navigate("/rentals")}
+          onClick={() => navigate("/places")}
         >
-          {/* <IconButton onClick={() => navigate("/rentals")}> */}
-          <SearchIcon
-            sx={{
-              color: "white",
-              ...(isMobile && {
-                mr: 2,
-              }),
-            }}
-          />
-          {isMobile && (
-            <Typography variant="body1" color="white">
-              Search
-            </Typography>
-          )}
-          {/* </IconButton> */}
+          <IconButton onClick={() => navigate("/places")}>
+            <SearchIcon
+              sx={{
+                color: "white",
+                ...(isMobile && {
+                  mr: 2,
+                }),
+              }}
+            />
+            {isMobile && (
+              <Typography variant="body1" color="white">
+                Search
+              </Typography>
+            )}
+          </IconButton>
         </Box>
       </Box>
     </Box>
