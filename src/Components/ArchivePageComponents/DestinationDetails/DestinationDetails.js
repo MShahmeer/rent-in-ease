@@ -1,5 +1,4 @@
 import { LocalParkingOutlined, MeetingRoomOutlined } from "@mui/icons-material";
-//import LoadingButton from "@mui/lab/LoadingButton";
 import {
   InputBase,
   Rating,
@@ -13,6 +12,12 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
+import {
+  Elements,
+  CardElement,
+  ElementsConsumer,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useContext, useEffect, useState } from "react";
@@ -26,7 +31,44 @@ import logo from "../../../images/airbnbRed.png";
 import mobileLogo from "../../../images/mobileLogoRed.png";
 import { useNavigate } from "react-router-dom";
 
+// const stripePromise = loadStripe(
+//   `${process.env.RENT_IN_EASE_STRIPE_PUBLIC_KEY}`
+// );
+const stripePromise = loadStripe(
+  "pk_test_51KOpzCGpIuRQXwxCd8Hv6vKz4kn1iKOLtexLVlmvHSHqbHkHvZxaP0PeToDUddekzzrcPUISB8EDd5jedH1k4lFr00Le2qC2yK"
+);
+
 const DestinationDetails = () => {
+  const handleSubmit = async (event, elements, stripe) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) return;
+
+    const cardElement = elements.getElement(CardElement);
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+    });
+
+    if (error) {
+      console.log(error);
+    } else {
+      const orderData = {
+        payment: {
+          gateway: "stripe",
+          stripe: {
+            payment_method_id: paymentMethod.id,
+          },
+        },
+      };
+      // onCaptureCheckout(checkoutToken.id, orderData);
+      // timeout();
+
+      // nextStep();
+    }
+  };
+
   const rentalsList = {
     attributes: {
       unoDescription: "2 Guests • 2 Beds • 1 Rooms",
@@ -47,8 +89,6 @@ const DestinationDetails = () => {
   const { state: place } = useLocation();
 
   const [noOfDays, setNoOfDays] = useState();
-  //const { Moralis, account } = useMoralis();
-  //const contractProcessor = useWeb3ExecuteFunction();
 
   //****************************  code for no of days ***********************************
   useEffect(() => {
@@ -528,32 +568,23 @@ const DestinationDetails = () => {
                     ).toFixed(2)}
                   </Box>
                 </Box>
-                {/* <LoadingButton
-                  fullWidth
-                  loading={loading}
-                  onClick={() => {
-                    if ("account")
-                      bookRental(
-                        place.name,
-                        place.location_string,
-                        checkIn,
-                        checkOut,
-                        place.photo.images.original.url
-                      );
-                    else handleAccount();
-                  }}
-                  variant="text"
-                  sx={{
-                    color: "#fff",
-                    bgcolor: "#d44957",
-                    borderRadius: "0.5rem",
-                    ":hover": {
-                      backgroundColor: "#b4414c",
-                    },
-                  }}
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  style={{ margin: "20px 0" }}
                 >
-                  Book Now
-                </LoadingButton> */}
+                  Payment Method
+                </Typography>
+                <Elements stripe={stripePromise}>
+                  <ElementsConsumer>
+                    {({ elements, stripe }) => (
+                      <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
+                        <CardElement />
+                        <br /> <br />
+                      </form>
+                    )}
+                  </ElementsConsumer>
+                </Elements>
                 <Button
                   variant="text"
                   sx={{
