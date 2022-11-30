@@ -15,6 +15,9 @@ import Home from "./Pages/HomePage/Home";
 import ArchivePage from "./Pages/ArchivePage/ArchivePage";
 import { searchFilterContext } from "./Context";
 import DestinationDetails from "./Components/ArchivePageComponents/DestinationDetails/DestinationDetails";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Singup";
+import AddProperty from "./Components/BecomeHostComponents/PropertyType/AddProperty";
 
 function App() {
   const [bound, setBound] = useState({});
@@ -47,6 +50,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/add" element={<AddProperty />} />
         <Route
           path="/"
           element={

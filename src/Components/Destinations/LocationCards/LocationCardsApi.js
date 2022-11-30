@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { locations as cardLocations } from "../../../Data/mock-data";
 import CarouselCard from "../CarouselCard/CarouselCard";
 
-const LocationCards = () => {
+const LocationCardsApi = () => {
   const [cards] = React.useState(cardLocations);
   if (!cards.length) {
     return null;
@@ -24,4 +24,4 @@ const LocationCards = () => {
   );
 };
 
-export default LocationCards;
+export default LocationCardsApi;
