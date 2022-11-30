@@ -4,9 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import uuid4 from "uuid4";
 
 import InputControl from "../../InputControl/InputControl";
-import { auth, getDatabase, ref, set } from "../../../firebase";
+import { auth, getDatabase, ref, set, storage } from "../../../firebase";
+import {
+  ref as reff,
+  getDownloadURL,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 function AddProperty() {
+  const [imgUrl, setImgUrl] = useState(null);
+  const [progresspercent, setProgresspercent] = useState(0);
   const navigate = useNavigate();
   const [values, setValues] = useState({
     Ownername: "",
@@ -17,6 +24,32 @@ function AddProperty() {
   });
   const [errorMsg, setErrorMsg] = useState("");
   const [addButtonDisabled, setAddButtonDisabled] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const file = e.target[0]?.files[0];
+    if (!file) return;
+    const storageRef = reff(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgresspercent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgUrl(downloadURL);
+        });
+      }
+    );
+  };
 
   const handleSubmission = () => {
     if (!values.Ownername || !values.Address || !values.Placename) {
@@ -85,7 +118,10 @@ function AddProperty() {
           <button onClick={handleSubmission} disabled={addButtonDisabled}>
             Add Place
           </button>
-          <p>Already Registered </p>
+          <form onSubmit={handleSubmit} className="form">
+            <input type="file" />
+            <button type="submit">Upload</button>
+          </form>
         </div>
       </div>
     </div>
