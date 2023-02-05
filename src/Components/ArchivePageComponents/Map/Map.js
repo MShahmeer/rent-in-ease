@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 
 import LocationOnTwoToneIcon from "@mui/icons-material/LocationOnTwoTone";
@@ -11,10 +11,13 @@ const Map = ({
   setBound,
   setChildClicked,
 }) => {
+  useEffect(() => {
+    const initMap = () => {};
+  });
   return (
     // <div className="map">
     <GoogleMapReact
-      bootstrapURLKeys={{ key: process.env.RENT_IN_EASE_GOOGLE_MAP_API_KEY }}
+      bootstrapURLKeys={{ key: "AIzaSyBcHGwYGmdHQgpGINwphwG41LeXndQRsAs" }}
       defaultCenter={coordinates}
       center={coordinates}
       defaultZoom={15}

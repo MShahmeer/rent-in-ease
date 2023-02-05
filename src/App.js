@@ -10,7 +10,7 @@ import PropertyType from "./Components/BecomeHostComponents/PropertyType/Propert
 import LeftSideBar from "./Components/AdminPageComponents/LeftSideBar";
 import UserList from "./Components/AdminPageComponents/UserList";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import { getData } from "./api/index";
+import { getData } from "./api";
 import Home from "./Pages/HomePage/Home";
 import ArchivePage from "./Pages/ArchivePage/ArchivePage";
 import { searchFilterContext } from "./Context";
@@ -18,6 +18,7 @@ import DestinationDetails from "./Components/ArchivePageComponents/DestinationDe
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Singup";
 import AddProperty from "./Components/BecomeHostComponents/PropertyType/AddProperty";
+import ViewProperties from "./Components/BecomeHostComponents/ViewProperties/ViewProperties";
 
 function App() {
   const [bound, setBound] = useState({});
@@ -44,7 +45,7 @@ function App() {
       setPlaces(data?.filter((place) => place.name));
       setIsLoading(false);
     });
-    console.log(places);
+    //console.log(places);
   }, [bound]);
 
   return (
@@ -83,20 +84,8 @@ function App() {
         />
         <Route path="/details" element={<DestinationDetails />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/view-properties" element={<ViewProperties />} />
       </Routes>
-      {/* <SinglePropertyType />
-      <ImageGallery />;
-      <Amenities /> */}
-
-      {/* <PropertyType className="propertyType" /> */}
-
-      {/* <SinglePost /> */}
-      {/* <LeftSideBar /> */}
-
-      {/* <UserList type="Hosts" /> */}
-      {/* <Dashboard /> */}
-      {/* <Home /> */}
-      {/* <ArchivePage /> */}
     </BrowserRouter>
   );
 }
